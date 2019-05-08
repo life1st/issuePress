@@ -1,0 +1,1 @@
+export const loginUserIsAdmin = (state) => (!!state.user.admin.id && state.user.admin.id === state.user.login.id)

@@ -1,0 +1,25 @@
+.userInfo {
+  width: 300px;
+  display: flex;
+  justify-content: flex-start;
+}
+.userAvatar {
+  $size: 50px;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px #ccc;
+  margin-right: 12px;
+}
+.meta {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 4px 8px;
+}
+.name {
+  font-size: 14px;
+}
+.bio {
+  font-size: 12px;
+}
