@@ -4,9 +4,11 @@ import {connect} from 'react-redux'
 import {fetchArticle} from '../../store/action'
 import css from './index.scss'
 
+const MarkdownIt = require('markdown-it');
+const md = new MarkdownIt()
+
 class Article extends Component {
   componentDidMount() {
-    // console.log(this.props)
     const {number} = this.props.match.params
     this.props.fetchArticle(number)
   }
@@ -15,9 +17,7 @@ class Article extends Component {
     return (
       <div>
         <h2 className={css.title}>{article.title}</h2>
-        {
-          article.body
-        }
+        <div dangerouslySetInnerHTML={{__html: article.body ? md.render(article.body) : ''}} />
       </div>
     )
   }
