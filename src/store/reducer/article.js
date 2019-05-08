@@ -2,6 +2,7 @@ import {ARTICLE_TYPES as TYPES} from '../actionTypes'
 
 const initArticleStates = {
   list: [],
+  labels: {},
   article: {}
 }
 
@@ -10,7 +11,8 @@ export default function article(state = initArticleStates, action) {
     case TYPES.GET_LIST:
       return {
         ...state,
-        list: [...action.payload]
+        labels: action.payload.labels,
+        list: action.payload.list
       }
     case TYPES.GET_ARTICLE:
       return {

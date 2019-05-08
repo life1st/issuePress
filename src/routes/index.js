@@ -41,7 +41,7 @@ class Pages extends Component {
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/auth' component={LoadAbleAuth} />
-          <Route exact path='/article' component={LoadAbleArticle} />
+          <Route exact path='/article/:number' component={LoadAbleArticle} />
           {
             pages.map(page => (
               <Route exact path={`/${page.name}`} component={page.component} key={page.name}/>
