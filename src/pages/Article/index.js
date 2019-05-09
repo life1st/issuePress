@@ -11,10 +11,11 @@ const md = new MarkdownIt()
 class Article extends Component {
   componentDidMount() {
     const {number} = this.props.match.params
-    this.props.fetchArticle(number)
+    !!number && this.props.fetchArticle(number)
+    this.prevDocTitle = document.title
   }
   componentWillUnmount() {
-    changeDocTitle('')
+    changeDocTitle(this.prevDocTitle || '')
   }
   render() {
     const {article} = this.props

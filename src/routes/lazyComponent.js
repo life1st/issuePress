@@ -19,3 +19,8 @@ export const LoadAbleArticleList = Loadable({
   loader: () => import('../pages/ArticleList'),
   loading: Loading
 })
+
+export const LoadAbleNewArticle = Loadable({
+  loader: () => import('../pages/NewArticle'),
+  loading: Loading
+})

@@ -9,6 +9,7 @@ import UserInfo from './components/UserInfo'
 import {
   LoadAbleAuth,
   LoadAbleArticle,
+  LoadAbleNewArticle
 } from './routes/lazyComponent'
 
 import css from './app.scss'
@@ -36,6 +37,7 @@ class App extends Component {
               <Route exact path='/' component={Home} />
               <Route exact path='/auth' component={LoadAbleAuth} />
               <Route exact path='/article/:number' component={LoadAbleArticle} />
+              <Route exact path='/new' component={LoadAbleNewArticle} />
               {
                 pages.map(page => (
                   <Route exact path={`/${page.name}`} component={page.component} key={page.name}/>

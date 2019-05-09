@@ -22,7 +22,10 @@ class UserInfo extends Component {
               <p className={css.username}>{name}</p>
               {
                 isAdmin && (
-                  <span className={css.adminBadge}>Admin</span>
+                  <>
+                    <span className={css.adminBadge}>Admin</span>
+                    <Link to='/new'>New ></Link>
+                  </>
                 )
               }
             </>
