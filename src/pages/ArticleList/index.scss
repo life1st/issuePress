@@ -2,18 +2,8 @@
   display: flex;
   justify-content: flex-start;
 }
-.labels {
-  flex-grow: 1;
-}
-.label {
-  margin: 2px auto;
-  p {
-    font-size: 12px;
-    display: inline-block;
-    border-radius: 4px;
-    padding: 2px 4px;
-  }
-}
+
+
 .article {
   flex-grow: 5;
 }

@@ -9,5 +9,6 @@ export const NET_TYPES = {
 }
 export const ARTICLE_TYPES = {
   GET_LIST: 'article/get_list',
-  GET_ARTICLE: 'article/get_article'
+  GET_ARTICLE: 'article/get_article',
+  TOGGLE_LABEL: 'article/toggle_label'
 }

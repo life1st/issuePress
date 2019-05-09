@@ -90,3 +90,12 @@ export function fetchArticle(issue_number) {
     }
   }
 }
+
+export function toggleLabelActive(label) {
+  return {
+    type: ARTICLE_TYPES.TOGGLE_LABEL,
+    payload: {
+      labelId: label.id
+    }
+  }
+}

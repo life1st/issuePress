@@ -2,7 +2,6 @@ import {USER_TYPES as TYPES} from '../actionTypes'
 const initUserState = {
   admin: {},
   login: {},
-  loginUserIsAdmin: false
 }
 
 export default function user(state = initUserState, action) {

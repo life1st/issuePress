@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export function getAccessToken() {
   const url = 'https://github.com/login/oauth/access_token'
 

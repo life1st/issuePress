@@ -3,43 +3,27 @@ import css from './index.scss'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
 import {fetchArticleList} from '../../store/action'
+import Labels from '../../components/Labels'
 
 class ArticleList extends Component {
-  state = {
-    showingList: null
-  }
-
   componentDidMount() {
     if (this.props.list.length <= 0) {
       this.props.fetchArticleList()
     }
   }
   render() {
-    const {labels, list} = this.props
+    const {list, activeLabels} = this.props
+    const showAbleList = list.filter(item => {
+      return item.labels.some(label => activeLabels.includes(label.id))
+    })
     return (
       <div className={css.articleList}>
-        <div className={css.labels}>
-          <h2>Types</h2>
-          <ul className={css.labelList}>
-            {
-              Object.keys(labels).map(key => (
-                <li 
-                  key={key} 
-                  className={css.label}
-                >
-                  <p style={{
-                    backgroundColor: `#${labels[key].color}`
-                  }}>{labels[key].name}</p>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+        <Labels />
         <div className={css.article}>
           <h2>List</h2>
           <ul className={css.list}>
             {
-              list.map(item => (
+              showAbleList.map(item => (
                 <li 
                   className={css.item} 
                   key={item.id}
@@ -62,7 +46,7 @@ class ArticleList extends Component {
 
 const mapState2Props = ({article}) => ({
   list: article.list,
-  labels: article.labels
+  activeLabels: article.activeLabels
 })
 
 export default withRouter(

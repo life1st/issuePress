@@ -10,7 +10,7 @@ class UserInfo extends Component {
     this.props.getLoginUserInfo()
   }
   render() {
-    const hasToken = !!window.localStorage.getItem('git_access_token')
+    const hasToken = !!window.localStorage.getItem('__auth')
 
     const {isAdmin, info} = this.props
     const {login: name} = info

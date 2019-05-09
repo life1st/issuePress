@@ -1,0 +1,27 @@
+.labels {
+  flex-grow: 1;
+}
+.title {
+  font-size: 14px;
+  font-weight: 500;
+}
+.labelList {
+  list-style: none;
+}
+.label {
+  margin: 2px auto;
+  color: #fff;
+  cursor: default;
+  &:hover {
+    p {
+      color: #333;
+      opacity: .8;
+    }
+  }
+  p {
+    font-size: 12px;
+    display: inline-block;
+    border-radius: 4px;
+    padding: 2px 4px;
+  }
+}
