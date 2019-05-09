@@ -6,6 +6,9 @@ import {loginUserIsAdmin} from '../../store/helper'
 import css from './index.scss'
 
 class UserInfo extends Component {
+  state = {
+    isNameHover: false
+  }
   componentDidMount() {
     this.props.getLoginUserInfo()
   }
@@ -19,7 +22,14 @@ class UserInfo extends Component {
         {
           hasToken ? (
             <>
-              <p className={css.username}>{name}</p>
+              <p 
+                className={css.username}
+                onMouseOver={() => {this.toggleHoverState(true)}}
+                onMouseLeave={() => {this.toggleHoverState(false)}}
+                onClick={this.handleLogout}
+              >
+                {this.state.isNameHover ? 'Logout' : name}
+              </p>
               {
                 isAdmin && (
                   <>
@@ -37,6 +47,16 @@ class UserInfo extends Component {
         }
       </div>
     )
+  }
+
+  toggleHoverState = (status) => {
+    this.setState({
+      isNameHover:status
+    })
+  }
+
+  handleLogout = () => {
+    window.localStorage.removeItem('__auth')
   }
 }
 

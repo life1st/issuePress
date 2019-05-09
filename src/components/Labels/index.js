@@ -29,12 +29,25 @@ class Labels extends Component {
             ))
           }
         </ul>
+        {
+          activeLabels.length > 0 && (
+            <button 
+              className={css.unselect} 
+              onClick={this.handleUnselect}
+            >
+              unselect all
+            </button>
+          )
+        }
       </div>
     )
   }
 
+  handleUnselect = () => {
+    this.props.activeLabels.forEach(id => this.props.toggleLabelActive({id}))
+  }
+
   handleItemClick = (label) => {
-    console.log(label)
     this.props.toggleLabelActive(label)
   }
 }

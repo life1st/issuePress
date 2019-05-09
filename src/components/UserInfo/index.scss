@@ -8,6 +8,13 @@
 .username {
   font-size: 12px;
   margin-right: 4px;
+  padding: 4px 6px;
+  cursor: pointer;
+  transition: all 300ms;
+  &:hover {
+    background-color: #333;
+    color: #fff;
+  }
 }
 .adminBadge {
   font-size: 10px;

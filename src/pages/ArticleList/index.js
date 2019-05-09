@@ -29,7 +29,8 @@ class ArticleList extends Component {
                   key={item.id}
                   onClick={() => {this.handleArticleClick(item)}}
                 >
-                  {item.title}
+                  <h3 className={css.itemTitle}>{item.title}</h3>
+                  <time className={css.itemDate}>{item.created_at}</time>
                 </li>
               ))
             }

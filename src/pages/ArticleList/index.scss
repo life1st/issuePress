@@ -1,16 +1,35 @@
 .articleList {
   display: flex;
   justify-content: flex-start;
+  padding: 12px 20px;
 }
 
 
 .article {
   flex-grow: 5;
 }
-.labelList, 
 .list {
   list-style: none;
+  max-width: 800px;
 }
 .item {
   margin: 6px 2px;
+  transition: background-color 300ms;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  &:hover {
+    background-color: #ccc;
+  }
+}
+.itemTitle {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 500;
+  padding: 2px 8px;
+}
+.itemDate {
+  font-size: 10px;
 }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
-import {getAccessToken} from '../../utils/request/Auth'
+import {connect} from 'react-redux'
+import {getLoginUserInfo} from '../../store/action'
 import {str2Obj} from '../../utils/url'
 import Dialog from '../../components/Dialog'
 import css from './index.scss'
@@ -49,7 +50,8 @@ class Auth extends Component {
     const username = this.username.value
     const pwd = this.pwd.value
 
-    window.localStorage.setItem('__auth', btoa(username + ':' + pwd))
+    window.localStorage.setItem('__auth', btoa(username + ':' + pwd))    
+    this.props.getLoginUserInfo()
 
     this.username.value = ''
     this.pwd.value = ''
@@ -58,4 +60,14 @@ class Auth extends Component {
   }
 }
 
-export default withRouter(Auth)
+const mapState2Props = ({}) => ({
+  
+})
+export default withRouter(
+  connect(
+    mapState2Props,
+    {
+      getLoginUserInfo
+    }
+  )(Auth)
+)
