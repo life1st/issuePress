@@ -1,5 +1,7 @@
 .userInfo {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   align-items: center;
   align-self: baseline;
 }
@@ -18,4 +20,8 @@
 .link {
   font-size: 10px;
   color: #333;
+}
+.newPost {
+  flex: 0 0 100%;
+  text-align: right;
 }

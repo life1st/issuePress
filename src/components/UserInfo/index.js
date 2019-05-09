@@ -24,7 +24,9 @@ class UserInfo extends Component {
                 isAdmin && (
                   <>
                     <span className={css.adminBadge}>Admin</span>
-                    <Link to='/new' className={css.link}>New ></Link>
+                    <p className={css.newPost}>
+                      <Link to='/new' className={css.link}>Make New Post -></Link>
+                    </p>
                   </>
                 )
               }
