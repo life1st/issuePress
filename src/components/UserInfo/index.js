@@ -24,13 +24,13 @@ class UserInfo extends Component {
                 isAdmin && (
                   <>
                     <span className={css.adminBadge}>Admin</span>
-                    <Link to='/new'>New ></Link>
+                    <Link to='/new' className={css.link}>New ></Link>
                   </>
                 )
               }
             </>
           ) : (
-            <Link to="/auth">to Auth</Link>
+            <Link to="/auth" className={css.link}>to Auth</Link>
           )
         }
       </div>
