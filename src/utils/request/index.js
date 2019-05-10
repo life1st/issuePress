@@ -2,7 +2,7 @@ import axios from 'axios'
 import {isPrd} from '../env'
 import {API_BASE} from '../../../config'
 
-const extra_config = isPrd ? {} : {
+const extra_config = {
   headers: {
     Authorization: 'Basic ' + window.localStorage.getItem('__auth')
   },
