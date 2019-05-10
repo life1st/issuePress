@@ -2,13 +2,15 @@ import React, {Component} from 'react'
 import css from './index.scss'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux';
-import {fetchArticleList} from '../../store/action'
+import {fetchArticleList, unMountArticle} from '../../store/action'
 import Labels from '../../components/Labels'
 
 class ArticleList extends Component {
   componentDidMount() {
+    this.props.unMountArticle()
+    this.props.fetchArticleList()
+
     if (this.props.list.length <= 0) {
-      this.props.fetchArticleList()
     }
   }
   render() {
@@ -54,7 +56,8 @@ export default withRouter(
   connect(
     mapState2Props,
     {
-      fetchArticleList
+      fetchArticleList,
+      unMountArticle
     }
   )(ArticleList)
 )

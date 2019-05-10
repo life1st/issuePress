@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchArticle, unMountArticle} from '../../store/action'
+import {fetchArticle} from '../../store/action'
 import {loginUserIsAdmin} from '../../store/helper'
 import {changeDocTitle} from '../../utils/doc'
 import PlaceHolder from '../../components/PlaceHolder'
@@ -48,7 +48,6 @@ class Article extends Component {
     this.prevDocTitle = document.title
   }
   componentWillUnmount() {
-    this.props.unMountArticle()
     changeDocTitle(this.prevDocTitle || '')
   }
   render() {
@@ -81,7 +80,6 @@ export default withRouter(
     mapState2Props,
     {
       fetchArticle,
-      unMountArticle
     }
   )(Article)
 )
