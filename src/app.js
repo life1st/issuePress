@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {Provider} from 'react-redux'
-import { BrowserRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
+import { HashRouter as Router, Route, Link, Switch, Redirect } from 'react-router-dom'
 import store from './store'
 import {ToastsContainer, ToastsStore} from 'react-toasts'
 import {pages} from './routes'
