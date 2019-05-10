@@ -20,22 +20,23 @@
     "cross-env": "^5.2.0",
     "parcel": "^1.12.3",
     "postcss-modules": "^1.4.1",
+    "prop-types": "^15.7.2",
     "redux-devtools-extension": "^2.13.8",
     "sass": "^1.17.3"
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "easymde": "^2.6.0",
     "highlight.js": "^9.15.6",
     "js-base64": "^2.5.1",
     "markdown-it": "^8.4.2",
-    "monaco-editor": "^0.16.2",
     "normalize.css": "^8.0.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-loadable": "^5.5.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
-    "react-simplemde-editor": "^4.0.0",
+    "react-toasts": "^3.0.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
   }

@@ -91,6 +91,12 @@ export function fetchArticle(issue_number) {
   }
 }
 
+export function unMountArticle() {
+  return {
+    type: ARTICLE_TYPES.UNMOUNT_ARTICLE
+  }
+}
+
 export function toggleLabelActive(label) {
   return {
     type: ARTICLE_TYPES.TOGGLE_LABEL,

@@ -14,7 +14,7 @@ class ArticleList extends Component {
   render() {
     const {list, activeLabels} = this.props
     const showAbleList = list.filter(item => {
-      return item.labels.some(label => activeLabels.includes(label.id))
+      return item.labels.some(label => activeLabels.includes(label.id)) || item.labels.length === 0
     })
     return (
       <div className={css.articleList}>

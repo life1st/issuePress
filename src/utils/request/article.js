@@ -1,5 +1,5 @@
 import {BLOG_CONFIG} from '../../../config'
-import {GET} from './index'
+import {GET, POST, PATCH} from './index'
 
 const {username, reponame} = BLOG_CONFIG
 export function getArticleList() {
@@ -21,8 +21,22 @@ export function getArticle(issue_number) {
  *    labels: <Array> [<string>]
  * }
  */
-export function editArticle(issue_number, payload) {
+export function sendEditArticle(issue_number, payload) {
   if (!payload) return 
 
-  const url = `/repos/:owner/:repo/issues/:issue_number`
+  const url = `/repos/${username}/${reponame}/issues/${issue_number}`
+
+  return PATCH(url, payload)
+}
+
+export function sendNewAritcle(payload) {
+  if (!payload) return 
+
+  const url = `/repos/${username}/${reponame}/issues`
+
+  return POST(url, payload)
+}
+
+export function deleteArticle() {
+
 }

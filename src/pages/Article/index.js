@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {withRouter} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {fetchArticle} from '../../store/action'
+import {fetchArticle, unMountArticle} from '../../store/action'
 import {loginUserIsAdmin} from '../../store/helper'
 import {changeDocTitle} from '../../utils/doc'
 import PlaceHolder from '../../components/PlaceHolder'
@@ -17,7 +17,7 @@ const md = new MarkdownIt({
         return '<pre class="hljs"><code>' +
                hljs.highlight(lang, str, true).value +
                '</code></pre>';
-      } catch (__) {}
+      } catch (e) {}
     }
 
     return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
@@ -48,6 +48,7 @@ class Article extends Component {
     this.prevDocTitle = document.title
   }
   componentWillUnmount() {
+    this.props.unMountArticle()
     changeDocTitle(this.prevDocTitle || '')
   }
   render() {
@@ -67,7 +68,7 @@ class Article extends Component {
   }
 
   handleEdit = () => {
-    console.log('to edit')
+    this.props.history.push('/edit/' + this.props.match.params.number)
   }
 }
 
@@ -79,7 +80,8 @@ export default withRouter(
   connect(
     mapState2Props,
     {
-      fetchArticle
+      fetchArticle,
+      unMountArticle
     }
   )(Article)
 )

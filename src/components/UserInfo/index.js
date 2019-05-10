@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
+import {ToastsStore} from 'react-toasts'
 import {getLoginUserInfo} from '../../store/action'
 import {loginUserIsAdmin} from '../../store/helper'
 import css from './index.scss'
@@ -57,6 +58,7 @@ class UserInfo extends Component {
 
   handleLogout = () => {
     window.localStorage.removeItem('__auth')
+    ToastsStore.success('Loged out.')
   }
 }
 

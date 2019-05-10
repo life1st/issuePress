@@ -21,6 +21,11 @@ export default function article(state = initArticleStates, action) {
         ...state,
         article: {...action.payload}
       }
+    case TYPES.UNMOUNT_ARTICLE:
+      return {
+        ...state,
+        article: {}
+      }
     case TYPES.TOGGLE_LABEL:
       if (state.activeLabels.includes(action.payload.labelId)) {
         return {

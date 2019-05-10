@@ -20,7 +20,7 @@ export const LoadAbleArticleList = Loadable({
   loading: Loading
 })
 
-export const LoadAbleNewArticle = Loadable({
-  loader: () => import('../pages/NewArticle'),
+export const LoadAbleEditor = Loadable({
+  loader: () => import('../pages/Editor'),
   loading: Loading
 })

@@ -7,3 +7,7 @@ export const str2Obj = (str) => {
     return counter
   }, {})
 }
+
+export const isEditing = (path) => {
+  return path.includes('edit')
+}
