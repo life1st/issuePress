@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=dev parcel src/index.html",
-    "build": "cross-env NODE_ENV=production parcel build src/index.html",
+    "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url ./issuePress/",
     "deploy": "gh-pages-deploy -- 'deploy release ver.'"
   },
   "gh-pages-deploy": {
