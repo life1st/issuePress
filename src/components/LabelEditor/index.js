@@ -1,46 +1,71 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {mergeArray} from '../../utils/array_utils'
+import css from './index.scss'
+
 class LabelEditor extends Component {
   state = {
-    showLables: []
+    showLables: [],
+    inputVal: ''
   }
   componentDidMount() {
     const {labels} = this.props
+
     this.setState({
-      showLables: mergeArray(this.state.showLables, Object.keys(labels))
+      // showLables: mergeArray(this.state.showLables, Object.keys(labels))
+      showLables: mergeArray(this.state.showLables, Object.keys(labels).map(key => labels[key]))
     })
   }
   componentWillReceiveProps(nextProps) {
     const {labels} = nextProps
-    console.log(labels)
     this.setState({
-      showLables: mergeArray(this.state.showLables, Object.keys(labels))
+      showLables: mergeArray(this.state.showLables, Object.keys(labels).map(key => labels[key]))
     })
   }
   render() {
-    const {showLables} = this.state
+    const {showLables, inputVal} = this.state
     const {labels} = this.props
     return (
-      <div className="show-label">
-        <ul>
+      <div className={css.showLabel}>
+        <ul className={css.labelList}>
           {
-            showLables.map(key => (
+            showLables.map(label => (
               <li 
-                key={key}
+                style={{
+                  backgroundColor: `#${label.color}`
+                }}
+                key={label.id}
               >
-                {labels[key].name}
+                {label.name}
               </li>
             ))
           }
+          <li className={css.inputing}>{inputVal}</li>
         </ul>
-        <input type="text" onKeyDown={this.handleKeyDown}/>
+        <input 
+          className={css.input} 
+          type="text" 
+          value={inputVal}
+          onChange={this.handleChange}
+          onKeyDown={this.handleKeyDown} />
       </div>
     )
   }
 
   handleKeyDown = (e) => {
-    console.log(e)
+    if (e.key === 'Enter') {
+      // handle submit
+      this.setState({
+        showLables: [...this.state.showLables, {name: this.state.inputVal, id: Math.random(), color: (Math.random() * 1000000 + '').slice(0,6)}],
+        inputVal: ''
+      })
+    }
+  }
+  handleChange = (e) => {
+    console.log(e.target.value)
+    this.setState({
+      inputVal: e.target.value
+    })
   }
 }
 

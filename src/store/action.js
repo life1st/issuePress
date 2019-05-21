@@ -7,21 +7,25 @@ import {
 } from './actionTypes'
 import {mergeLabels} from './helper'
 import {BLOG_CONFIG} from '../../config'
-import { async } from 'q';
 
 export function getLoginUserInfo() {
   return async dispatch => {
-    const res = await getUser()
+    try {
+      const res = await getUser()
 
-    if (res.status === 200) {
-      const {data} = res
+      if (res.status === 200) {
+        const {data} = res
+        dispatch({
+          type: USER_TYPES.GET_LOGIN_INFO,
+          payload: data
+        })
+      } 
+    } catch {
       dispatch({
-        type: USER_TYPES.GET_LOGIN_INFO,
-        payload: data
-      })
-    } else {
-      dispatch({
-        type: NET_TYPES.FAILED
+        type: NET_TYPES.FAILED,
+        payload: {
+          info: 'login to access your promission.'
+        }
       })
     }
   }

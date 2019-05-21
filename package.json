@@ -6,7 +6,7 @@
   "scripts": {
     "start": "cross-env NODE_ENV=dev parcel src/index.html",
     "build": "cross-env NODE_ENV=production parcel build src/index.html --public-url /issuePress/",
-    "deploy": "gh-pages-deploy -- 'deploy release ver.'"
+    "deploy": "npm run build && gh-pages-deploy -- 'deploy release ver.'"
   },
   "gh-pages-deploy": {
     "staticpath": "dist"
