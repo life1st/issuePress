@@ -10,7 +10,6 @@ export default function network(state = initNetworkStates, action) {
   let {status} = initNetworkStates
   switch (action.type) {
     case TYPES.FAILED:
-      console.log('fialedd')
       status = 'failed'
       ToastsStore.error(action.payload.info)
       break

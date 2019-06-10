@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import EasyMde from 'easymde'
 import 'easymde/dist/easymde.min.css'
-import LabelEditor from '../../components/LabelEditor'
 
 const mdeConfig = {
   autofocus: true
@@ -20,6 +19,7 @@ class MdEditor extends Component {
       ...mdeConfig
     })
 
+    this.handleValueChange()
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,10 +33,14 @@ class MdEditor extends Component {
     return (
       <div>
         <textarea ref={ref => this.textarea = ref}></textarea>
-        <LabelEditor />
-        <button onClick={this.handleSubmit}>Submit</button>
       </div>
     )
+  }
+
+  handleValueChange = () => {
+    this.mde.codemirror.on('change', () => {
+      this.props.onChange && this.props.onChange(this.mde.value())
+    })
   }
 
   handleSubmit = () => {

@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "classnames": "^2.2.6",
     "easymde": "^2.6.0",
     "highlight.js": "^9.15.6",
     "js-base64": "^2.5.1",

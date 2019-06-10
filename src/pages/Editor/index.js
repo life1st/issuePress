@@ -6,6 +6,7 @@ import {isEditing} from '../../utils/url'
 import {sendEditArticle, sendNewAritcle} from '../../utils/request/article'
 import css from './index.scss'
 import MdEditor from '../../components/MdEditor'
+import LabelEditor from '../../components/LabelEditor'
 
 class Editor extends Component {
   static defaultProps = {
@@ -13,7 +14,8 @@ class Editor extends Component {
   }
   state = {
     title: '',
-    content: ''
+    content: '',
+    isEncryption: false
   }
   componentDidMount() {
     this.isEditing = isEditing(this.props.match.path)
@@ -34,7 +36,7 @@ class Editor extends Component {
   }
 
   render() {
-    const {title, content} = this.state
+    const {title, content, isEncryption} = this.state
     return (
       <div>
         <div className={css.title}>
@@ -46,9 +48,23 @@ class Editor extends Component {
             onChange={(e) => this.handleEditTitle(e)} 
           />
         </div>
-        <MdEditor content={content} onSubmit={this.handleSubmit} />
+        <input 
+          type="checkbox" 
+          id="is_encryption" 
+          value={isEncryption} 
+          onChange={() => {
+            this.setState({isEncryption: !isEncryption})
+          }}/>
+        <label htmlFor="is_encryption">Encryption</label>
+        <MdEditor content={content} onChange={this.handleMdeChange} />
+        <LabelEditor isEncryption={isEncryption} />
+        <button onClick={this.handleSubmit}>Submit</button>
       </div>
     )
+  }
+
+  handleMdeChange = (val) => {
+    this.mdeContent = val
   }
 
   handleEditTitle = (e) => {
@@ -57,12 +73,12 @@ class Editor extends Component {
     })
   }
 
-  handleSubmit = (content) => {
+  handleSubmit = () => {
     if (this.isEditing) {
       const {number} = this.props.match.params
       sendEditArticle(number, {
         title: this.state.title,
-        body: content
+        body: this.mdeContent
       }).then(res => {
         ToastsStore.success('Already updated.')
         this.props.history.push('/list')
@@ -73,7 +89,7 @@ class Editor extends Component {
       const {title} = this.state
       sendNewAritcle({
         title,
-        body: content
+        body: this.mdeContent
       }).then(res => {
         ToastsStore.success('New Article Already Posted.')
         this.props.history.push('/list')
