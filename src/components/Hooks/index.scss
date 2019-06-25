@@ -1,0 +1,78 @@
+.item {
+  border-bottom: 1px solid #000;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 12px;
+  .avatar {
+    $s: 45px;
+    width: $s;
+    height: $s;
+    position: relative;
+    img {
+      width: $s;
+      height: $s;
+    }
+  }
+}
+.containor {
+  padding-bottom: 50px;
+}
+.joinCount {
+  position: fixed;
+  bottom: 6px;
+  left: 10px;
+  right: 10px;
+  border: 1px solid #666;
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background-color: #fff;
+}
+.btn {
+  font-size: 12px;
+  border: 1px solid #ccc;
+}
+.joined {
+  border: 1px solid #0f0;
+}
+
+.groupAvatars {
+  list-style: none;
+  .avatarItem {
+    display: inline-block;
+    position: relative;
+    margin-left: -5px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    img {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}
+
+:global {
+  .animate-avatar {
+    // opacity: 0;
+    position: absolute;
+    left: 0;
+  }
+  .avatarAnime {
+    &#{'-exit'} {
+      opacity: 1;
+      transform: translateX(0) translateY(0);
+    }
+  
+    &#{'-exit-active'} {
+      opacity: .8;
+      transform: translateX(100px) translateY(400px);
+      transition: transform 2s cubic-bezier(.16,-0.73,.74,.99);
+    }
+  
+    &#{'-exit-done'} {
+      opacity: 0;
+    }
+  }
+}
