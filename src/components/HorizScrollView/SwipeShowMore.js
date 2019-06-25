@@ -69,9 +69,11 @@ class SwipeShowMore {
       ...INIT_EVENT_CONFIG,
       can_start: true //这个值不需要清，会在 onscroll 中处理
     }
-    console.log('end')
-    this.circleEl.style.transform = 'translateX(100%);'
-    // this.textEl.style.transform = 'translateX(100%) translateY(50%);'
+    this.circleEl.style.width = `0`
+    this.circleEl.style.transition = `all 300ms`
+    setTimeout(() => {
+      this.circleEl.style.transition = ``      
+    }, 300);
   }
 
   _initStartX = (touch) => {
@@ -86,57 +88,54 @@ class SwipeShowMore {
 
     const circleEl = document.createElement('div')
     const textEl = document.createElement('p')
-    textEl.innerText = '左划查看更多'
+    textEl.innerText = '全部小组'
     
-    // textEl.style.cssText = `
-    //   width: 1em;
-    //   position: absolute;
-    //   top: 50%;
-    //   right: 0;
-    //   transform: translateY(-50%) ${initTransformX};
-    //   font-size: 12px;
-    //   color: #fff;
-    // `
+    textEl.style.cssText = `
+      width: 1em;
+      position: absolute;
+      top: 50%;
+      right: 2px;
+      transform: translateY(-50%);
+      font-size: 12px;
+      color: #fff;
+    `
     circleEl.style.cssText = `
       position: absolute;
       text-align: right;
       right: 0;
       top: 0;
-      width: 1.2em;
-      border-radius: 50% 0 0 50%;
+      width: 0;
+      border-radius: 100px 0 0 100px;
       height: 100%;
       background-color: rgba(0, 0, 0, .4);
-      transform: ${initTransformX};
       transition: transform 300ms;
     `
 
     this.circleEl = circleEl
-    // this.textEl = textEl
+    this.textEl = textEl
+    this.circleEl.appendChild(textEl)
     this.list_config.el.appendChild(circleEl)
-    // this.list_config.el.appendChild(textEl)
   }
   
   _setDom = (xDiff) => {
     const BASE = this.containor_config.width / 2
-    if (xDiff < BASE) {
+    const abs_w = Math.abs(xDiff)
+    if (abs_w < BASE && abs_w < 100) {
       
-      let scale = (Math.abs(xDiff) / BASE) + 1
       // if (scale < 2) {
       //   scale *= 1.2
       // } 
       // if (scale > 3) {
       //   scale *= 0.8
       // }
-      
-      let translateX
-      if (scale < 2.8) {
-        translateX = (100 / 0.8) * (scale - 1)
+      if (abs_w > 60) {
+        this.textEl.innerText = '释放查看全部'
       } else {
-        // translateX = 100
+        this.textEl.innerText = '全部小组'
       }
-      console.log(translateX)
-      this.circleEl.style.transform = `scale(${scale}, 1) translateX(${translateX - 100}%)`
-      // this.textEl.style.transform = `translateX(${translateX - 100}) translateY(50%)`
+      
+      this.circleEl.style.width = `${(abs_w / 2)}px`
+      this.circleEl.style.borderRadius = `${abs_w / 2}px 0 0 ${abs_w / 2}px`
     }
   }
 }
