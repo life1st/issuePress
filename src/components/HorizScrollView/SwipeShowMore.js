@@ -1,5 +1,6 @@
 const INIT_EVENT_CONFIG = {
   can_start: false, 
+  success: false, // 触发成功回调
   effective_distance: {
     x: 50,
   },
@@ -9,7 +10,7 @@ const INIT_EVENT_CONFIG = {
 }
 class SwipeShowMore {
   // containor.clientWidth + containor.scrollLeft = list.clientWidth
-  constructor(containor, list) {
+  constructor(containor, list, config) {
     this.containor_config = {
       el: containor,
       width: containor.clientWidth
@@ -17,6 +18,10 @@ class SwipeShowMore {
     this.list_config = {
       el: list,
       width: list.clientWidth
+    }
+
+    this.callback = {
+      onSuccess: config && config.onSuccess
     }
 
     this.event_config = {
@@ -29,10 +34,8 @@ class SwipeShowMore {
       const scrollLeft = e.target.scrollLeft
       // buffer 10px
       if (this.containor_config.width + scrollLeft >= this.list_config.width - 10) {
-        console.log('can_start')
         this.event_config.can_start = true
       } else {
-        console.log('can not')
         this.event_config.can_start = false
       }
     }
@@ -44,12 +47,13 @@ class SwipeShowMore {
 
   claer() {
     // call this when dom destory.
-    containor.removeEventListener('touchstart', this.handleTouchStart)
-    containor.removeEventListener('touchmove', this.handleTouchMove)
+    this.containor_config.el.removeEventListener('touchstart', this._handleTouchStart)
+    this.containor_config.el.removeEventListener('touchmove', this._handleTouchMove)
+    this.containor_config.el.removeEventListener('touchend', this._handleTouchEnd)
   }
 
   _handleTouchStart = (e) => {
-    console.log(e)
+    // console.log(e)
   }
 
   _handleTouchMove = (e) => {
@@ -59,21 +63,31 @@ class SwipeShowMore {
       const {pageX: x, pageY: y} = touch
       const xDiff = x - this.event_config.touch.x
       this._setDom(xDiff)
+      if (xDiff < 0) {
+        e.preventDefault()
+      }
     }
   }
 
   _handleTouchEnd = (e) => {
     // clear last event status store on the class.
 
+    if (this.event_config.success) {
+      this.callback.onSuccess && this.callback.onSuccess()
+    }
+
     this.event_config = {
       ...INIT_EVENT_CONFIG,
       can_start: true //这个值不需要清，会在 onscroll 中处理
     }
+    this.textEl.innerText = '全部小组'
+    this.textEl.style.opacity = '0'
     this.circleEl.style.width = `0`
     this.circleEl.style.transition = `all 300ms`
     setTimeout(() => {
       this.circleEl.style.transition = ``      
     }, 300);
+
   }
 
   _initStartX = (touch) => {
@@ -84,8 +98,6 @@ class SwipeShowMore {
   }
 
   _initCircleDom = () => {
-    const initTransformX = 'translateX(100%)'
-
     const circleEl = document.createElement('div')
     const textEl = document.createElement('p')
     textEl.innerText = '全部小组'
@@ -95,9 +107,12 @@ class SwipeShowMore {
       position: absolute;
       top: 50%;
       right: 2px;
+      margin: 0;
       transform: translateY(-50%);
       font-size: 12px;
-      color: #fff;
+      line-height: 12px;
+      color: #8c8c8c;
+      opacity: 0;
     `
     circleEl.style.cssText = `
       position: absolute;
@@ -107,7 +122,7 @@ class SwipeShowMore {
       width: 0;
       border-radius: 100px 0 0 100px;
       height: 100%;
-      background-color: rgba(0, 0, 0, .4);
+      background-color: #eee;
       transition: transform 300ms;
     `
 
@@ -120,21 +135,18 @@ class SwipeShowMore {
   _setDom = (xDiff) => {
     const BASE = this.containor_config.width / 2
     const abs_w = Math.abs(xDiff)
-    if (abs_w < BASE && abs_w < 100) {
+    if (abs_w < BASE && abs_w < 80) {
       
-      // if (scale < 2) {
-      //   scale *= 1.2
-      // } 
-      // if (scale > 3) {
-      //   scale *= 0.8
-      // }
-      if (abs_w > 60) {
+      if (-xDiff > 72) {
+        this.event_config.success = true
         this.textEl.innerText = '释放查看全部'
       } else {
+        this.event_config.success = false
         this.textEl.innerText = '全部小组'
       }
       
-      this.circleEl.style.width = `${(abs_w / 2)}px`
+      this.textEl.style.opacity = '1'
+      this.circleEl.style.width = `${(-xDiff / 2)}px`
       this.circleEl.style.borderRadius = `${abs_w / 2}px 0 0 ${abs_w / 2}px`
     }
   }
