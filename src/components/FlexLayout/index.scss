@@ -1,0 +1,160 @@
+
+// item
+.introItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  &:last-child,
+  &:only-child {
+    margin-bottom: 0;
+  }
+}
+.index {
+  margin-right: 14px;
+  flex: 0 0 9px;
+  align-self: flex-start;
+  &.topIndex {
+    color: #CC3344;
+  }
+}
+.avatar {
+  $s: 45px;
+  height: $s;
+  flex: 0 0 $s;
+  position: relative;
+  display: block;
+  margin-right: 10px;
+  img {
+    height: $s;
+    width: $s;
+    border-radius: 4px;
+  }
+}
+.info {
+  display: block;
+  align-self: flex-start;
+  flex: 1 0 0;
+  overflow: hidden;
+  text-decoration: none;
+  margin-right: 13px;
+  p {
+    margin: 0;
+  }
+}
+.name {
+  font-size: 17px;
+  line-height: 24px;
+  height: 24px;
+  color: #494949;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.desc {
+  font-size: 13px;
+  line-height: 18px;
+  color: #9B9B9B;
+  margin-top: 2px;
+  height: 18px;
+  overflow: hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.btnGroup {
+  .btn {
+    $h: 23px;
+    width: 72px;
+    height: $h;
+    line-height: $h;
+    font-size: 13px;
+    border-radius: 4px;
+    padding: 0;
+    color: #666;
+    border: 1px solid #666;
+    background-color: #fff;
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    box-sizing: border-box;
+    &:focus {
+      outline: none;
+    }
+  }
+  .join {
+    $c: #68CB78;
+    border: 1px solid $c;
+    color: $c;
+  }
+  .joined {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  }
+}
+// list
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.introItem.default {
+  .name {
+    font-size: 15px;
+    line-height: 21px;
+  }
+  .desc {
+    font-size: 13px;
+    line-height: 18px;
+  }
+}
+
+.introItem.subject {
+  margin: 0;
+  margin-right: -15px;
+  padding: 15px;
+  padding-left: 0;
+
+  .avatar {
+    $h: 50px;
+    height: $h;
+    flex: 0 0 $h;
+    margin-right: 10px;
+    img {
+      height: $h;
+      width: $h;
+      border-radius: 4px;
+    }
+  }
+  .info {
+    .name {
+      color: #191919;
+      font-weight: 500;
+    }
+    .desc {
+      color: #818181;
+      font-size: 11px;
+      line-height: 13px;
+    }
+  }
+  .btnGroup {
+    .btn {
+      $h: 23px;
+      font-size: 11px;
+      height: $h;
+      line-height: $h;
+      width: auto;
+      min-width: 60px;
+      padding: 0 5px;
+      word-break: keep-all;
+    }
+    .join {
+      $c: #42BD56;
+      color: $c;
+      border: 1px solid $c;
+    }
+    .joined {
+      color: #CCC;
+      border: 1px solid #DFDFDF;
+    }
+  }
+}

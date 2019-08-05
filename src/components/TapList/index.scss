@@ -1,0 +1,30 @@
+
+
+.list {
+  list-style: none;
+  // flex: 0 0 100%;
+}
+.item {
+  display: flex;
+  margin: 0 5px 12px;
+}
+.avatar {
+  $s: 50px;
+  width: $s;
+  height: $s;
+  flex: 0 0 $s;
+  margin-right: 6px;
+  border-radius: 4px;
+  border: 1px solid #000;
+}
+.info {
+  flex: 1;
+}
+:global {
+  .swiper-containor {
+    overflow: hidden;
+  }
+  .Tappable-active {
+    background-color: #ccc;
+  }
+}
