@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import * as echarts from 'echarts'
 import graph from './config.default'
 
-
 export default class Chart extends Component {
   static defaultProps = {
     options: graph,

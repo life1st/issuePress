@@ -6,6 +6,7 @@ import {pages} from './routes'
 import Home from './pages/Home'
 import AdminInfo from './components/AdminInfo'
 import UserInfo from './components/UserInfo'
+import DndList from './components/DndList'
 import {
   LoadAbleAuth,
   LoadAbleArticle,
@@ -21,10 +22,10 @@ class App extends Component {
         <Provider store={store}>
           <Router>
             <div className={css.header}>
-              <AdminInfo />
-              <UserInfo />
+              {/* <AdminInfo /> */}
+              {/* <UserInfo /> */}
             </div>
-            <ul className={css.nav}>
+            {/* <ul className={css.nav}>
               {
                 pages.map(page => (
                   <li className={css.navItem} key={page.name}>
@@ -32,7 +33,10 @@ class App extends Component {
                   </li>
                 ))
               }
-            </ul>
+            </ul> */}
+            <div style={{marginTop: 20}}>
+              <DndList />
+            </div>
             <Switch>
               <Route exact path='/' component={Home} />
               <Route exact path='/auth' component={LoadAbleAuth} />

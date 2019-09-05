@@ -1,0 +1,38 @@
+.icon {
+  $s: 26px;
+  width: $s;
+  height: $s;
+  display: inline-block;
+  &.menu {
+    background: url('./menu.png') center no-repeat;
+    background-size: contain;
+  }
+}
+.sortableList {
+  position: relative;
+}
+.listOnDraging {
+  user-select: none;
+  overscroll-behavior: none;
+}
+.sortableItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+  margin: 12px 0;
+  padding: 0 8px;
+  box-sizing: border-box;
+}
+.onDrag {
+  opacity: 0;
+}
+.dragItem {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: .6;
+  .menu {
+    transform: scale(1.1);
+  }
+}
